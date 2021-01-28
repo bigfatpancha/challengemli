@@ -6,7 +6,7 @@ public class Satellite {
 	
 	private String name;
 	private ArrayList<String> messages;
-	private Float distance;
+	private Double distance;
 	public String getName() {
 		return name;
 	}
@@ -19,10 +19,10 @@ public class Satellite {
 	public void setMessages(ArrayList<String> messages) {
 		this.messages = messages;
 	}
-	public Float getDistance() {
+	public Double getDistance() {
 		return distance;
 	}
-	public void setDistance(Float distance) {
+	public void setDistance(Double distance) {
 		this.distance = distance;
 	}
 

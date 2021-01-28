@@ -13,20 +13,22 @@ import com.challenge.mli.model.DistancesMessages;
 import com.challenge.mli.model.Position;
 import com.challenge.mli.model.Satellite;
 import com.challenge.mli.model.Source;
-import com.challenge.mli.services.SatelliteService;
+import com.challenge.mli.services.MessagesService;
+import com.challenge.mli.services.PositionService;
 
 @RestController
 public class SatelliteController {
 	
-	@Autowired SatelliteService satelliteService;
+	@Autowired PositionService satelliteService;
+	@Autowired MessagesService messagesService;
 
 	@PostMapping("/topsecret")
 	@ResponseBody
 	Source postTopsecret(@RequestBody ArrayList<Satellite> satellites) {
-		DistancesMessages distancesMessages = this.satelliteService.parseSatellitesData(satellites);
+		DistancesMessages distancesMessages = parseSatellitesData(satellites);
 		
 		Position sourcePosition = this.satelliteService.getLocation(distancesMessages.getDistances());
-		String message = this.satelliteService.getMessage(distancesMessages.getMessages());
+		String message = this.messagesService.getMessage(distancesMessages.getMessages());
 		
 		return new Source(sourcePosition, message);
 	}
@@ -41,13 +43,23 @@ public class SatelliteController {
 	@GetMapping("/topsecret_split/")
 	@ResponseBody
 	Source getTopsecretSplit() {
-		ArrayList<Float> distances = null; // TODO obtener la informacion persistida
+		ArrayList<Double> distances = null; // TODO obtener la informacion persistida
 		ArrayList<ArrayList<String>> messages = null; // TODO obtener la informacion persistida
 		
 		Position sourcePosition = this.satelliteService.getLocation(distances);
-		String message = this.satelliteService.getMessage(messages);
+		String message = this.messagesService.getMessage(messages);
 		
 		return new Source(sourcePosition, message);
+	}
+	
+	private DistancesMessages parseSatellitesData(ArrayList<Satellite> satellitesData) {
+		ArrayList<Double> distances = new ArrayList<>();
+		ArrayList<ArrayList<String>> messages = new ArrayList<>();
+		satellitesData.forEach((satellite) -> {
+			distances.add(satellite.getDistance());
+			messages.add(satellite.getMessages());
+		});
+		return new DistancesMessages(distances, messages);
 	}
 
 }

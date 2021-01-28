@@ -4,17 +4,15 @@ import java.util.ArrayList;
 
 public class DistancesMessages {
 	
-	private ArrayList<Float> distances;
+	private ArrayList<Double> distances;
 	private ArrayList<ArrayList<String>> messages;
 	
-	
-	
-	public DistancesMessages(ArrayList<Float> distances, ArrayList<ArrayList<String>> messages) {
+	public DistancesMessages(ArrayList<Double> distances, ArrayList<ArrayList<String>> messages) {
 		this.distances = distances;
 		this.messages = messages;
 	}
 
-	public ArrayList<Float> getDistances() {
+	public ArrayList<Double> getDistances() {
 		return distances;
 	}
 	
