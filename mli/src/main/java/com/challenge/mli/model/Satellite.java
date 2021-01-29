@@ -2,9 +2,17 @@ package com.challenge.mli.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Satellite {
 	
-	private String name;
+	private @Id String name;
+	@Column
+    @ElementCollection(targetClass=String.class)
 	private List<String> message;
 	private Double distance;
 	public String getName() {

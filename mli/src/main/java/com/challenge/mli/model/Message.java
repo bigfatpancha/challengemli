@@ -76,5 +76,13 @@ public class Message {
 	public String getWordInPosition(Integer pos) {
 		return this.correctWords.get(pos);
 	}
+
+	public Integer getShift() {
+		return shift;
+	}
+
+	public List<String> getCorrectWords() {
+		return correctWords;
+	}
 	
 }
