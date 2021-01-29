@@ -99,6 +99,10 @@ Para el calculo de la posicion de la fuenta emisora del mensaje se busca el punt
 Para descifrar el mensaje primero se calcula el desfasaje de cada array de palabras, una vez calculado el desfasaje se ubican las palabras en la posicion correcta, luego se arma el mensaje final tomando la palabra correspondiente a cada posicion.
 
 
+### HOSTING
+El servicio se encuentra hosteado en:
+http://challenge-env.eba-mwqcgnhc.us-east-2.elasticbeanstalk.com/
+
 ### Datos de prueba
 
 topsecret
