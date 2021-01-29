@@ -1,11 +1,11 @@
 package com.challenge.mli.model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Satellite {
 	
 	private String name;
-	private ArrayList<String> messages;
+	private List<String> message;
 	private Double distance;
 	public String getName() {
 		return name;
@@ -13,11 +13,11 @@ public class Satellite {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public ArrayList<String> getMessages() {
-		return messages;
+	public List<String> getMessage() {
+		return message;
 	}
-	public void setMessages(ArrayList<String> messages) {
-		this.messages = messages;
+	public void setMessage(List<String> messages) {
+		this.message = messages;
 	}
 	public Double getDistance() {
 		return distance;

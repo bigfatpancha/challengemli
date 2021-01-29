@@ -2,6 +2,7 @@ package com.challenge.mli.services;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class PositionService {
 	private Position skywalkerPosition = new Position(Double.valueOf(100), Double.valueOf(-100));
 	private Position satoPosition = new Position(Double.valueOf(500), Double.valueOf(100));
 	
-	public Position getLocation(ArrayList<Double> distances) throws PositionNotFoundException {
+	public Position getLocation(List<Double> distances) throws PositionNotFoundException {
 		
 		if (distances.size() != 3) {
 			throw new PositionNotFoundException("Three satellites are needed to find source position");

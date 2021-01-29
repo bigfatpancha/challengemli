@@ -1,5 +1,7 @@
 package com.challenge.mli.model;
 
+import org.apache.commons.math3.util.Precision;
+
 public class Position {
 	
 	private Double X;
@@ -7,8 +9,8 @@ public class Position {
 	
 	public Position(Double x, Double y) {
 		super();
-		X = x;
-		Y = y;
+		X = Precision.round(x, 2);
+		Y = Precision.round(y, 2);
 	}
 
 	public Double getX() {

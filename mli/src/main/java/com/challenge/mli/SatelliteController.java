@@ -1,9 +1,11 @@
 package com.challenge.mli;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.challenge.mli.model.DistancesMessages;
 import com.challenge.mli.model.Position;
 import com.challenge.mli.model.Satellite;
+import com.challenge.mli.model.SatelliteRequest;
 import com.challenge.mli.model.Source;
 import com.challenge.mli.services.MessagesService;
 import com.challenge.mli.services.PositionService;
@@ -24,8 +27,8 @@ public class SatelliteController {
 
 	@PostMapping("/topsecret")
 	@ResponseBody
-	Source postTopsecret(@RequestBody ArrayList<Satellite> satellites) {
-		DistancesMessages distancesMessages = parseSatellitesData(satellites);
+	Source postTopsecret(@RequestBody SatelliteRequest satellitesReq) {
+		DistancesMessages distancesMessages = parseSatellitesData(satellitesReq.getSatellites());
 		
 		Position sourcePosition = this.satelliteService.getLocation(distancesMessages.getDistances());
 		String message = this.messagesService.getMessage(distancesMessages.getMessages());
@@ -35,7 +38,7 @@ public class SatelliteController {
 	
 	@PostMapping("/topsecret_split/{satellite_name}")
 	@ResponseBody
-	String postTopsecretSplit(@RequestBody Satellite satellite) {
+	String postTopsecretSplit(@PathVariable String satellite_name, @RequestBody Satellite satellite) {
 		// TODO persistir la informacion
 		return "";
 	}
@@ -43,8 +46,8 @@ public class SatelliteController {
 	@GetMapping("/topsecret_split/")
 	@ResponseBody
 	Source getTopsecretSplit() {
-		ArrayList<Double> distances = null; // TODO obtener la informacion persistida
-		ArrayList<ArrayList<String>> messages = null; // TODO obtener la informacion persistida
+		List<Double> distances = null; // TODO obtener la informacion persistida
+		List<List<String>> messages = null; // TODO obtener la informacion persistida
 		
 		Position sourcePosition = this.satelliteService.getLocation(distances);
 		String message = this.messagesService.getMessage(messages);
@@ -53,11 +56,11 @@ public class SatelliteController {
 	}
 	
 	private DistancesMessages parseSatellitesData(ArrayList<Satellite> satellitesData) {
-		ArrayList<Double> distances = new ArrayList<>();
-		ArrayList<ArrayList<String>> messages = new ArrayList<>();
+		List<Double> distances = new ArrayList<>();
+		List<List<String>> messages = new ArrayList<>();
 		satellitesData.forEach((satellite) -> {
 			distances.add(satellite.getDistance());
-			messages.add(satellite.getMessages());
+			messages.add(satellite.getMessage());
 		});
 		return new DistancesMessages(distances, messages);
 	}

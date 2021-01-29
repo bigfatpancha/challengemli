@@ -1,22 +1,22 @@
 package com.challenge.mli.model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class DistancesMessages {
 	
-	private ArrayList<Double> distances;
-	private ArrayList<ArrayList<String>> messages;
+	private List<Double> distances;
+	private List<List<String>> messages;
 	
-	public DistancesMessages(ArrayList<Double> distances, ArrayList<ArrayList<String>> messages) {
+	public DistancesMessages(List<Double> distances, List<List<String>> messages) {
 		this.distances = distances;
 		this.messages = messages;
 	}
 
-	public ArrayList<Double> getDistances() {
+	public List<Double> getDistances() {
 		return distances;
 	}
 	
-	public ArrayList<ArrayList<String>> getMessages() {
+	public List<List<String>> getMessages() {
 		return messages;
 	}
 	
